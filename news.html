@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tin tức - Ant Ngoại Ngữ</title>
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
+
+    <link href="../assets/css/main.css" rel="stylesheet">
+    <link href="../assets/css/news.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- News Section -->
+    <section class="news-page py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="news-sidebar">
+                        <!-- Categories -->
+                        <div class="sidebar-section">
+                            <h5 class="sidebar-title">DANH MỤC BÀI VIẾT</h5>
+                            <ul class="category-list">
+                                <li><a href="news.html" class="category-link active">Trang chủ</a></li>
+                                <li>
+                                    <a href="#" class="category-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#gioiThieuSubmenu">
+                                        Giới thiệu <i class="bi bi-chevron-down"></i>
+                                    </a>
+                                    <ul class="collapse submenu" id="gioiThieuSubmenu">
+                                        <li><a href="about.html" class="submenu-link">Về chúng tôi</a></li>
+                                        <li><a href="why-choose-us.html" class="submenu-link">Tại sao chọn chúng tôi</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="category-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#khoaHocSubmenu">
+                                        Khóa học <i class="bi bi-chevron-down"></i>
+                                    </a>
+                                    <ul class="collapse submenu" id="khoaHocSubmenu">
+                                        <li><a href="courses.html?category=giao-tiep" class="submenu-link">Giao tiếp</a></li>
+                                        <li><a href="courses.html?category=kinh-doanh" class="submenu-link">Kinh doanh</a></li>
+                                        <li><a href="courses.html?category=marketing" class="submenu-link">Marketing</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="news.html" class="category-link">Tin tức</a></li>
+                                <li><a href="#contact" class="category-link">Liên hệ</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Related Articles -->
+                        <div class="sidebar-section">
+                            <h5 class="sidebar-title">BÀI VIẾT LIÊN QUAN</h5>
+                            <div class="related-articles">
+                                <div class="related-article">
+                                    <div class="related-image">
+                                        <img src="assets/img/news.png" alt="Làm sao để tự tin thuyết trình" class="img-fluid">
+                                    </div>
+                                    <div class="related-content">
+                                        <h6><a href="news-detail.html?id=1">Làm sao để tự tin thuyết trình, hợp hành bằng tiếng Anh?</a></h6>
+                                        <span class="related-date">13/04/2018</span>
+                                    </div>
+                                </div>
+
+                                <div class="related-article">
+                                    <div class="related-image">
+                                        <img src="assets/img/news.png" alt="7 từ tiếng Anh thường bị viết sai" class="img-fluid">
+                                    </div>
+                                    <div class="related-content">
+                                        <h6><a href="news-detail.html?id=2">7 từ tiếng Anh thường bị viết sai theo từ điển Oxford</a></h6>
+                                        <span class="related-date">13/04/2018</span>
+                                    </div>
+                                </div>
+
+                                <div class="related-article">
+                                    <div class="related-image">
+                                        <img src="assets/img/news.png" alt="5 lợi ích của việc học tiếng Anh" class="img-fluid">
+                                    </div>
+                                    <div class="related-content">
+                                        <h6><a href="news-detail.html?id=3">5 lợi ích của việc học tiếng Anh cùng người bản xứ</a></h6>
+                                        <span class="related-date">13/04/2018</span>
+                                    </div>
+                                </div>
+
+                                <div class="related-article">
+                                    <div class="related-image">
+                                        <img src="assets/img/news.png" alt="Tấm man tiếng Anh cho bác cha mẹ" class="img-fluid">
+                                    </div>
+                                    <div class="related-content">
+                                        <h6><a href="news-detail.html?id=4">Tấm man tiếng Anh cho bác cha mẹ</a></h6>
+                                        <span class="related-date">13/04/2018</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9 col-md-8">
+                    <div class="news-content">
+                        <div class="news-header">
+                            <h2 class="news-page-title">Tin tức</h2>
+                        </div>
+
+                        <!-- Featured Article -->
+                        <div class="featured-article mb-5" data-aos="fade-up">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="article-image">
+                                        <img src="assets/img/news.png" alt="Làm sao để tự tin thuyết trình" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="article-content">
+                                        <h3 class="article-title">
+                                            <a href="news-detail.html?id=1">Làm sao để tự tin thuyết trình, hợp hành bằng tiếng Anh?</a>
+                                        </h3>
+                                        <div class="article-meta">
+                                            <span class="article-date">13/04/2018</span>
+                                            <span class="article-author">- Nguyễn Chánh Bảo Trung</span>
+                                        </div>
+                                        <p class="article-excerpt">
+                                            Dù có thể tự tin giao tiếp với người nước ngoài, nhưng nhiều người đi làm vẫn cảm thấy "tim đập chân run" mỗi lần phải thuyết trình hay hợp hành bằng tiếng Anh với sếp hoặc đối tác nước ngoài. Cùng tìm hiểu nguyên nhân và giải pháp! Vì sao bạn chưa tự tin thuyết trình h...
+                                        </p>
+                                        <a href="news-detail.html?id=1" class="read-more-btn">Đọc thêm <i class="bi bi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Article Grid -->
+                        <div class="articles-grid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="article-card">
+                                        <div class="article-image">
+                                            <img src="assets/img/news.png" alt="7 từ tiếng Anh thường bị viết sai" class="img-fluid">
+                                        </div>
+                                        <div class="article-content">
+                                            <h4 class="article-title">
+                                                <a href="news-detail.html?id=2">7 từ tiếng Anh thường bị viết sai theo từ điển Oxford</a>
+                                            </h4>
+                                            <div class="article-meta">
+                                                <span class="article-date">13/04/2018</span>
+                                                <span class="article-author">- Nguyễn Chánh Bảo Trung</span>
+                                            </div>
+                                            <p class="article-excerpt">
+                                                Đối với đa số người học tiếng Anh và cả người bản ngữ, phần chính tả khi viết tiếng Anh đôi lúc cũng khá rắc rối. Bên cạnh một vài quy tắc chung, cũng sẽ có những từ có đặc điểm riêng hoặc đi ngược lại với nguyên tắc thông thường, lí do là vì chính tả trong tiếng Anh...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="article-card">
+                                        <div class="article-image">
+                                            <img src="assets/img/news.png" alt="5 lợi ích của việc học tiếng Anh" class="img-fluid">
+                                        </div>
+                                        <div class="article-content">
+                                            <h4 class="article-title">
+                                                <a href="news-detail.html?id=3">5 lợi ích của việc học tiếng Anh cùng người bản xứ</a>
+                                            </h4>
+                                            <div class="article-meta">
+                                                <span class="article-date">13/04/2018</span>
+                                                <span class="article-author">- Nguyễn Chánh Bảo Trung</span>
+                                            </div>
+                                            <p class="article-excerpt">
+                                                Trong quá trình học tiếng Anh, muốn giỏi kỹ năng đọc hoặc viết, bạn chỉ cần có những nguồn tài liệu phong phú và đầy tin cậy cùng sự kiên nhẫn và chăm chỉ. Tuy nhiên, để hoàn thiện khả năng nghe-nói cùng những kỹ năng nâng cao khác như phát âm, cách sử dụng từ, phần...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 mb-4" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="article-card">
+                                        <div class="article-image">
+                                            <img src="assets/img/news.png" alt="Tấm man tiếng Anh cho bác cha mẹ" class="img-fluid">
+                                        </div>
+                                        <div class="article-content">
+                                            <h4 class="article-title">
+                                                <a href="news-detail.html?id=4">Tấm man tiếng Anh cho bác cha mẹ</a>
+                                            </h4>
+                                            <div class="article-meta">
+                                                <span class="article-date">13/04/2018</span>
+                                                <span class="article-author">- Nguyễn Chánh Bảo Trung</span>
+                                            </div>
+                                            <p class="article-excerpt">
+                                                Trở thành cha mẹ là một cột mốc rất quan trọng trong cuộc đời con người. Trong tiếng Anh, có một số từ vựng đặc biệt dành riêng cho những bậc cha mẹ mới. Hãy cùng tìm hiểu những từ vựng thú vị này nhé!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 mb-4" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="article-card">
+                                        <div class="article-image">
+                                            <img src="assets/img/news.png" alt="Kỹ năng giao tiếp tiếng Anh" class="img-fluid">
+                                        </div>
+                                        <div class="article-content">
+                                            <h4 class="article-title">
+                                                <a href="news-detail.html?id=5">Kỹ năng giao tiếp tiếng Anh trong môi trường công sở</a>
+                                            </h4>
+                                            <div class="article-meta">
+                                                <span class="article-date">12/04/2018</span>
+                                                <span class="article-author">- Nguyễn Chánh Bảo Trung</span>
+                                            </div>
+                                            <p class="article-excerpt">
+                                                Trong môi trường công sở hiện đại, khả năng giao tiếp tiếng Anh hiệu quả là một yếu tố quan trọng quyết định sự thành công trong công việc. Bài viết này sẽ chia sẻ những kỹ năng cần thiết để giao tiếp tự tin trong môi trường làm việc quốc tế.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination-wrapper mt-5" data-aos="fade-up">
+                            <nav aria-label="News pagination">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">
+                                            <i class="bi bi-chevron-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
+
+    <!-- Load header and footer -->
+    <script>
+        fetch("components/header.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("header").innerHTML = data);
+    </script>
+    <script>
+        fetch("components/footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+
+    <!-- Custom JS -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

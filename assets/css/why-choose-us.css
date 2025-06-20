@@ -1,0 +1,610 @@
+/* Why Choose Us Page Styles */
+
+/* Hero Section */
+.why-choose-hero {
+  padding: 100px 0 60px;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  opacity: 0.95;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Reasons Section */
+.reasons-section {
+  background: #f8f9fa;
+  padding: 80px 0;
+}
+
+.reason-item {
+  background: white;
+  margin-bottom: 40px;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reason-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(135deg, #007bff, #00d0ff );
+  transition: width 0.3s ease;
+}
+
+.reason-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.reason-item:hover::before {
+  width: 100%;
+  opacity: 0.05;
+}
+
+/* Reason Icons */
+.reason-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.reason-1 .icon-wrapper {
+  background: linear-gradient(135deg, #007bff , #00d0ff);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.arrows-pattern {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.arrow-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+}
+
+.x-marks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.x-mark {
+  position: absolute;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.x1 {
+  top: 10%;
+  left: 20%;
+}
+.x2 {
+  top: 20%;
+  right: 15%;
+}
+.x3 {
+  bottom: 15%;
+  left: 15%;
+}
+.x4 {
+  bottom: 20%;
+  right: 20%;
+}
+.x5 {
+  top: 50%;
+  right: 5%;
+}
+
+.reason-2 .icon-wrapper {
+  background: linear-gradient(135deg, #007bff, #17a2b8);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.money-back-icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.circular-arrow {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.dollar-sign {
+  position: absolute;
+  bottom: 20%;
+  right: 20%;
+  font-size: 2rem;
+  color: white;
+}
+
+.reason-3 .icon-wrapper {
+  background: linear-gradient(135deg, #17a2b8, #00d0ff);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.flexible-time-icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.clock-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 3px solid white;
+  border-radius: 50%;
+  position: relative;
+}
+
+.clock-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: white;
+  border-radius: 50px 0 0 50px;
+}
+
+.clock-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+}
+
+.dot1 {
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dot2 {
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.dot3 {
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dot4 {
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.reason-4 .icon-wrapper {
+  background: linear-gradient(135deg, #6f42c1, #e83e8c);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.small-class-icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.network-diagram {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: auto;
+}
+
+.node {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+}
+
+.center-node {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #007bff ;
+}
+
+.top-node {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.left-node {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.right-node {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.bottom-node {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.connection {
+  position: absolute;
+  background: white;
+  height: 2px;
+}
+
+.con1 {
+  top: 24px;
+  left: 30px;
+  width: 20px;
+  transform: rotate(-45deg);
+}
+.con2 {
+  top: 29px;
+  left: 24px;
+  width: 20px;
+}
+.con3 {
+  top: 34px;
+  left: 30px;
+  width: 20px;
+  transform: rotate(45deg);
+}
+.con4 {
+  top: 29px;
+  right: 24px;
+  width: 20px;
+}
+
+.reason-5 .icon-wrapper,
+.reason-6 .icon-wrapper,
+.reason-7 .icon-wrapper,
+.reason-8 .icon-wrapper {
+  background: linear-gradient(135deg, #fd7e14, #dc3545);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2.5rem;
+}
+
+.reason-6 .icon-wrapper {
+  background: linear-gradient(135deg, #00d0ff, #17a2b8);
+}
+
+.reason-7 .icon-wrapper {
+  background: linear-gradient(135deg, #6f42c1, #007bff);
+}
+
+.reason-8 .icon-wrapper {
+  background: linear-gradient(135deg, #e83e8c, #fd7e14);
+}
+
+.reason-number {
+  background: #e9ecef;
+  color: #6c757d;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Reason Content */
+.reason-content {
+  padding-left: 20px;
+}
+
+.reason-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.reason-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  margin: 0;
+}
+
+.reason-description strong {
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, #007bff , #00d0ff);
+  color: white;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cta-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-buttons .btn {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.cta-buttons .btn-primary {
+  background: white;
+  color: #007bff ;
+  border: 2px solid white;
+}
+
+.cta-buttons .btn-primary:hover {
+  background: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+.cta-buttons .btn-outline-light:hover {
+  background: white;
+  color: #007bff ;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .why-choose-hero {
+    padding: 60px 0 40px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .reason-item {
+    padding: 30px 20px;
+    margin-bottom: 30px;
+  }
+
+  .reason-content {
+    padding-left: 0;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .reason-title {
+    font-size: 1.3rem;
+  }
+
+  .reason-description {
+    font-size: 1rem;
+  }
+
+  .cta-title {
+    font-size: 1.8rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .reason-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .reason-1 .icon-wrapper,
+  .reason-2 .icon-wrapper,
+  .reason-3 .icon-wrapper,
+  .reason-4 .icon-wrapper,
+  .reason-5 .icon-wrapper,
+  .reason-6 .icon-wrapper,
+  .reason-7 .icon-wrapper,
+  .reason-8 .icon-wrapper {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  .arrow-circle {
+    font-size: 1.5rem;
+  }
+
+  .x-mark {
+    font-size: 1rem;
+  }
+
+  .circular-arrow {
+    font-size: 1.2rem;
+  }
+
+  .dollar-sign {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animation Effects */
+.reason-item:hover .reason-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.reason-item:hover .reason-title {
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+/* Staggered Animation */
+.reason-item:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.reason-item:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+/* Icon Specific Animations */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.reason-item:hover .arrow-circle i,
+.reason-item:hover .circular-arrow i {
+  animation: rotate 2s linear infinite;
+}
+
+.reason-item:hover .x-marks .x-mark {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
+.reason-item:hover .clock-fill {
+  animation: clockFill 2s ease-in-out infinite;
+}
+
+@keyframes clockFill {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.reason-item:hover .node {
+  animation: nodeGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes nodeGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  }
+}

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết tin tức - Ant Ngoại Ngữ</title>
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
+
+    <link href="../assets/css/main.css" rel="stylesheet">
+    <link href="../assets/css/news.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- News Detail Section -->
+    <section class="news-detail-page py-5">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="news.html">Tin tức</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-title">Làm sao để tự tin thuyết trình, hợp hành bằng tiếng Anh?</li>
+                </ol>
+            </nav>
+
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="news-sidebar">
+                        <!-- Categories -->
+                        <div class="sidebar-section">
+                            <h5 class="sidebar-title">DANH MỤC BÀI VIẾT</h5>
+                            <ul class="category-list">
+                                <li><a href="index.html" class="category-link">Trang chủ</a></li>
+                                <li>
+                                    <a href="#" class="category-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#gioiThieuSubmenu">
+                                        Giới thiệu <i class="bi bi-chevron-down"></i>
+                                    </a>
+                                    <ul class="collapse submenu" id="gioiThieuSubmenu">
+                                        <li><a href="about.html" class="submenu-link">Về chúng tôi</a></li>
+                                        <li><a href="why-choose-us.html" class="submenu-link">Tại sao chọn chúng tôi</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="category-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#khoaHocSubmenu">
+                                        Khóa học <i class="bi bi-chevron-down"></i>
+                                    </a>
+                                    <ul class="collapse submenu" id="khoaHocSubmenu">
+                                        <li><a href="courses.html?category=giao-tiep" class="submenu-link">Giao tiếp</a></li>
+                                        <li><a href="courses.html?category=kinh-doanh" class="submenu-link">Kinh doanh</a></li>
+                                        <li><a href="courses.html?category=marketing" class="submenu-link">Marketing</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="news.html" class="category-link active">Tin tức</a></li>
+                                <li><a href="#contact" class="category-link">Liên hệ</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Related Articles -->
+                        <div class="sidebar-section">
+                            <h5 class="sidebar-title">BÀI VIẾT LIÊN QUAN</h5>
+                            <div class="related-articles">
+                                <div class="related-article">
+                                    <div class="related-image">
+                                        <img src="assets/img/news.png" alt="Làm sao để tự tin thuyết trình" class="img-fluid">
+                                    </div>
+                                    <div class="related-content">
+                                        <h6><a href="news-detail.html?id=1">Làm sao để tự tin thuyết trình, hợp hành bằng tiếng Anh?</a></h6>
+                                        <span class="related-date">13/04/2018</span>
+                                    </div>
+                                </div>
+
+                                <div class="related-article">
+                                    <div class="related-image">
+                                        <img src="assets/img/news.png" alt="7 từ tiếng Anh thường bị viết sai" class="img-fluid">
+                                    </div>
+                                    <div class="related-content">
+                                        <h6><a href="news-detail.html?id=2">7 từ tiếng Anh thường bị viết sai theo từ điển Oxford</a></h6>
+                                        <span class="related-date">13/04/2018</span>
+                                    </div>
+                                </div>
+
+                                <div class="related-article">
+                                    <div class="related-image">
+                                        <img src="assets/img/news.png" alt="5 lợi ích của việc học tiếng Anh" class="img-fluid">
+                                    </div>
+                                    <div class="related-content">
+                                        <h6><a href="news-detail.html?id=3">5 lợi ích của việc học tiếng Anh cùng người bản xứ</a></h6>
+                                        <span class="related-date">13/04/2018</span>
+                                    </div>
+                                </div>
+
+                                <div class="related-article">
+                                    <div class="related-image">
+                                        <img src="assets/img/news.png" alt="Tấm man tiếng Anh cho bác cha mẹ" class="img-fluid">
+                                    </div>
+                                    <div class="related-content">
+                                        <h6><a href="news-detail.html?id=4">Tấm man tiếng Anh cho bác cha mẹ</a></h6>
+                                        <span class="related-date">13/04/2018</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9 col-md-8">
+                    <div class="news-detail-content">
+                        <!-- Article Header -->
+                        <div class="article-header mb-4" data-aos="fade-up">
+                            <h1 class="article-title" id="article-title">Làm sao để tự tin thuyết trình, hợp hành bằng tiếng Anh?</h1>
+                            <div class="article-meta">
+                                <span class="meta-item">
+                                    <strong>ĐĂNG BỞI</strong> <span class="author-name" id="article-author">NGUYỄN CHÁNH BẢO TRUNG</span>
+                                </span>
+                                <span class="meta-item">
+                                    <strong>VÀO LÚC</strong> <span class="article-date" id="article-date">13/04/2018</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Article Content -->
+                        <div class="article-body" data-aos="fade-up" data-aos-delay="100">
+                            <div class="article-intro">
+                                <p>Dù có thể tự tin giao tiếp với người nước ngoài, nhưng nhiều người đi làm vẫn cảm thấy "tim đập chân run" mỗi lần phải thuyết trình hay hợp hành bằng tiếng Anh với sếp hoặc đối tác nước ngoài.</p>
+                                <p><strong>Cùng tìm hiểu nguyên nhân và giải pháp!</strong></p>
+                            </div>
+
+                            <h3>Vì sao bạn chưa tự tin thuyết trình hay hợp hành bằng tiếng Anh?</h3>
+                            
+                            <div class="article-image my-4">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oFMavbieLZH3bz8yrcsvX16YGW6J2W.png" alt="Làm sao để tự tin thuyết trình, hợp hành bằng tiếng Anh?" class="img-fluid rounded">
+                            </div>
+
+                            <p>Dù đã bỏ ra khá nhiều thời gian và tiền bạc, cũng như công sức học giao tiếp tiếng Anh, nhiều người vẫn mất tự tin và thất bại khi phải trình bày và hợp hành bằng tiếng Anh với đối tác. Trong khi, họ có thể giao tiếp tự nhiên với bạn bè nước ngoài.</p>
+
+                            <p>Cũng có một nghịch lý là đôi khi, những nhân viên khác có thể tiếng Anh chưa giỏi bằng họ, nhưng lại tự tin thuyết trình, hợp hành bằng tiếng Anh với đối tác nước ngoài. Họ cũng thành công hơn với các buổi thương lượng bằng tiếng Anh với khách hàng.</p>
+
+                            <p>Theo các chuyên gia của Psychologist, thiếu tự tin không nhất thiết là do thiếu năng lực. Phần lớn là do cách bạn chưa làm việc tốt với bản thân, để có một cái nhìn đúng đắn về con người mình, khả năng thực sự của mình. Hơn thế nữa, nỗi sợ sai hay sợ bị đánh giá cũng khiến bạn mất tự tin với năng lực vốn có của mình.</p>
+
+                            <h4>1. Thiếu kiến thức chuyên môn về lĩnh vực của mình</h4>
+                            <p>Nhiều người nghĩ rằng chỉ cần tiếng Anh tốt là có thể thuyết trình hiệu quả. Tuy nhiên, để thuyết trình thành công, bạn cần có kiến thức sâu về lĩnh vực mình đang làm việc.</p>
+
+                            <h4>2. Chưa chuẩn bị kỹ lưỡng</h4>
+                            <p>Việc chuẩn bị kỹ lưỡng không chỉ bao gồm nội dung mà còn cả cách trình bày, ngôn ngữ cơ thể và khả năng xử lý các tình huống bất ngờ.</p>
+
+                            <h4>3. Sợ phạm lỗi ngữ pháp</h4>
+                            <p>Nhiều người Việt Nam quá lo lắng về việc phạm lỗi ngữ pháp khi nói tiếng Anh, điều này làm họ mất tự tin và không thể truyền đạt ý tưởng một cách tự nhiên.</p>
+
+                            <h3>Giải pháp để tự tin thuyết trình bằng tiếng Anh</h3>
+
+                            <h4>1. Nắm vững kiến thức chuyên môn</h4>
+                            <p>Hãy đảm bảo bạn hiểu rõ về chủ đề mình sẽ trình bày. Khi bạn tự tin về kiến thức, việc diễn đạt bằng tiếng Anh sẽ trở nên dễ dàng hơn.</p>
+
+                            <h4>2. Luyện tập thường xuyên</h4>
+                            <p>Thực hành thuyết trình trước gương, ghi âm lại và nghe lại để cải thiện. Bạn cũng có thể thực hành với bạn bè hoặc đồng nghiệp.</p>
+
+                            <h4>3. Tập trung vào việc truyền đạt thông điệp</h4>
+                            <p>Thay vì lo lắng về ngữ pháp, hãy tập trung vào việc truyền đạt thông điệp của mình một cách rõ ràng và thuyết phục.</p>
+
+                            <h4>4. Sử dụng ngôn ngữ cơ thể hiệu quả</h4>
+                            <p>Ngôn ngữ cơ thể chiếm 55% trong giao tiếp. Hãy duy trì tư thế tự tin, giao tiếp bằng mắt và sử dụng cử chỉ phù hợp.</p>
+
+                            <div class="article-conclusion mt-4 p-4 bg-light rounded">
+                                <h5>Kết luận</h5>
+                                <p>Tự tin thuyết trình bằng tiếng Anh không chỉ đến từ khả năng ngôn ngữ mà còn từ sự chuẩn bị kỹ lưỡng, kiến thức chuyên môn và thái độ tích cực. Hãy bắt đầu từ những bước nhỏ và không ngừng luyện tập để cải thiện kỹ năng này.</p>
+                            </div>
+                        </div>
+
+                        <!-- Social Share -->
+                        <div class="social-share mt-4" data-aos="fade-up" data-aos-delay="200">
+                            <h6>Chia sẻ bài viết:</h6>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" title="Chia sẻ lên Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn twitter" title="Chia sẻ lên Twitter">
+                                    <i class="bi bi-twitter"></i>
+                                </a>
+                                <a href="#" class="share-btn linkedin" title="Chia sẻ lên LinkedIn">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                                <a href="#" class="share-btn copy" title="Sao chép liên kết">
+                                    <i class="bi bi-link-45deg"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Comments Section -->
+                        <div class="comments-section mt-5" data-aos="fade-up" data-aos-delay="300">
+                            <h4 class="comments-title">Bình luận (<span id="comments-count">1</span> bình luận)</h4>
+                            
+                            <!-- Existing Comments -->
+                            <div class="comments-list" id="comments-list">
+                                <div class="comment-item">
+                                    <div class="comment-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-TIIGTZ6tjXMQv3niWjeGDW6tuccLJi.png" alt="User Avatar" class="avatar-img">
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comment-header">
+                                            <h6 class="comment-author">ád</h6>
+                                            <span class="comment-date">20/06/2025</span>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>ád</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comment Form -->
+                            <div class="comment-form-section mt-4">
+                                <div class="captcha-notice mb-3">
+                                    <small class="text-muted">mã captcha được xác định là máy</small>
+                                </div>
+                                
+                                <h5 class="form-title">VIẾT BÌNH LUẬN CỦA BẠN:</h5>
+                                
+                                <form id="comment-form" class="comment-form">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <input type="text" class="form-control" id="comment-name" placeholder="Họ tên" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <input type="email" class="form-control" id="comment-email" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <textarea class="form-control" id="comment-content" rows="5" placeholder="Nội dung" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary comment-submit-btn">
+                                        GỬI BÌNH LUẬN
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
+
+    <!-- Load header and footer -->
+    <script>
+        fetch("components/header.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("header").innerHTML = data);
+    </script>
+    <script>
+        fetch("components/footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+
+    <!-- Custom JS -->
+    <script src="../assets/js/news-detail.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
