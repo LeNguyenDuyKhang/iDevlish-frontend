@@ -12,32 +12,434 @@
   <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   
-  <link href="../assets/css/header.css" rel="stylesheet">
-  <script src="../assets/js/header.js"></script>
+  <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 
 <body>
   <!-- Header -->
   <div id="header"></div>
+
+  <!-- main -->
+   <main class="hero-section" id="home">
+        <!-- Background Slider -->
+        <div class="background-slider">
+            <div class="background-image active"></div>
+            <div class="background-image"></div>
+        </div>
+        
+        <!-- Overlay -->
+        <div class="overlay"></div>
+        
+        <!-- Content Container -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="hero-content text-center">
+                        <h1 class="hero-title text-white mb-4" data-aos="fade-up">
+                            Chào mừng đến với nền tảng của chúng tôi
+                        </h1>
+                        <p class="hero-subtitle text-white mb-5" data-aos="fade-up" data-aos-delay="100">
+                            Khám phá các dịch vụ chuyên nghiệp của chúng tôi
+                        </p>
+                        
+                        <!-- Navigation Cards -->
+                        <div class="navigation-cards">
+                            <a href="giao-tiep.html" class="nav-card card-giao-tiep" data-aos="fade-up" data-aos-delay="200">
+                                <i class="bi bi-globe"></i>
+                                <span>Giao tiếp</span>
+                            </a>
+                            
+                            <a href="kinh-doanh.html" class="nav-card card-kinh-doanh" data-aos="fade-up" data-aos-delay="300">
+                                <i class="bi bi-briefcase"></i>
+                                <span>Kinh doanh</span>
+                            </a>
+                            
+                            <a href="marketing.html" class="nav-card card-marketing" data-aos="fade-up" data-aos-delay="400">
+                                <i class="bi bi-clock"></i>
+                                <span>Marketing & Truyền thông</span>
+                            </a>
+                            
+                            <a href="vi-sach.html" class="nav-card card-vi-sach" data-aos="fade-up" data-aos-delay="500">
+                                <i class="bi bi-bar-chart"></i>
+                                <span>Vì sách của phòng</span>
+                            </a>
+                            
+                            <a href="thiet-ke.html" class="nav-card card-thiet-ke" data-aos="fade-up" data-aos-delay="600">
+                                <i class="bi bi-pencil"></i>
+                                <span>Thiết kế đồ họa</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="800">
+            <i class="bi bi-chevron-down"></i>
+        </div>
+    </main>
+
+    <!-- Additional Content Section (Optional) -->
+    <section class="content-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="mb-4">Về chúng tôi</h2>
+                    <p class="lead">
+                        Chúng tôi cung cấp các dịch vụ chuyên nghiệp trong lĩnh vực giao tiếp, 
+                        kinh doanh, marketing và thiết kế đồ họa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- Featured Courses Section -->
+    <section class="featured-courses py-5" id="courses">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">Khóa học nổi bật</h2>
+                    <p class="section-subtitle text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Tiếng Anh suất sắc – Vững chắc tương lai. Hãy đến Ant Ngoại Ngữ hiện thực hóa giấc mơ của con bạn.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="assets/img/course.png" alt="Chiến lược tăng vốn từ vựng tiếng Anh" class="img-fluid">
+                        </div>
+                        <div class="course-content">
+                            <h5 class="course-title">Chiến lược tăng vốn từ vựng tiếng Anh cho người mất căn bản</h5>
+                            <div class="course-price">
+                                <span class="current-price">360.000₫</span>
+                                <span class="original-price">650.000₫</span>
+                                <span class="discount">(-35%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="assets/img/course.png" alt="Chiến lược học ngữ pháp tiếng Anh" class="img-fluid">
+                        </div>
+                        <div class="course-content">
+                            <h5 class="course-title">Chiến lược học ngữ pháp tiếng Anh cho người mất căn bản</h5>
+                            <div class="course-price">
+                                <span class="current-price">490.000₫</span>
+                                <span class="original-price">510.000₫</span>
+                                <span class="discount">(-4%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="assets/img/course.png" alt="Chiến lược học phát âm và phản xạ nói tiếng Anh" class="img-fluid">
+                            <div class="course-badge">
+                                <button class="btn btn-primary btn-sm">Xem chi tiết</button>
+                            </div>
+                        </div>
+                        <div class="course-content">
+                            <h5 class="course-title">Chiến lược học phát âm và phản xạ nói tiếng Anh cho người mất căn bản</h5>
+                            <div class="course-price">
+                                <span class="current-price">550.000₫</span>
+                                <span class="original-price">680.000₫</span>
+                                <span class="discount">(-19%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us py-5 bg-light" id="why-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">Tại sao chọn chúng tôi</h2>
+                    <p class="section-subtitle text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Giữa vô vàn trung tâm dạy tiếng Anh hiện nay, chỉ có duy nhất một nơi dành riêng cho người lớn bận rộn.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Yj0umPZrzxoUQa6n3JLq9wmXkU2HlN.png" alt="Cam kết của chúng tôi" class="img-fluid">
+                        </div>
+                        <div class="feature-content">
+                            <h5 class="feature-title">Cam kết của chúng tôi</h5>
+                            <p class="feature-description">
+                                Giúp bạn nói tiếng Anh tự tin hoặc hoàn tiền. Thật khó tin? Nhưng đây là cam kết của chúng tôi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Yj0umPZrzxoUQa6n3JLq9wmXkU2HlN.png" alt="Phương pháp hiệu quả" class="img-fluid">
+                        </div>
+                        <div class="feature-content">
+                            <h5 class="feature-title">Phương pháp hiệu quả</h5>
+                            <p class="feature-description">
+                                Chương trình giảng dạy và chứng chỉ/văn bằng của Ant Ngoại Ngữ đạt chuẩn CEFR
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Yj0umPZrzxoUQa6n3JLq9wmXkU2HlN.png" alt="Giờ học linh động" class="img-fluid">
+                        </div>
+                        <div class="feature-content">
+                            <h5 class="feature-title">Giờ học linh động</h5>
+                            <p class="feature-description">
+                                Chúng tôi cung cấp các giải pháp linh hoạt, giúp bạn chủ động chọn thời gian học phù hợp
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Yj0umPZrzxoUQa6n3JLq9wmXkU2HlN.png" alt="Giáo viên bản ngữ" class="img-fluid">
+                        </div>
+                        <div class="feature-content">
+                            <h5 class="feature-title">Giáo viên bản ngữ</h5>
+                            <p class="feature-description">
+                                Giáo viên của chúng tôi đều đến từ các nước sử dụng tiếng Anh là ngôn ngữ chính như Mỹ, Anh, Canada và Úc
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section class="teachers-section py-5" id="teachers">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title text-white" data-aos="fade-up">Đội ngũ thầy cô</h2>
+                    <p class="section-subtitle text-white-50" data-aos="fade-up" data-aos-delay="100">
+                        100% giáo viên bản xứ xuất sắc của chúng tôi đều được đào tạo bài bản và cấp chứng chỉ CELTA (chứng chỉ giảng dạy Anh ngữ Quốc tế của Đại học Cambridge) và TESOL (chứng chỉ quốc tế về phương pháp giảng dạy tiếng Anh).
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            <img src="assets/img/teacher.png" alt="John Mcallister" class="img-fluid">
+                        </div>
+                        <div class="teacher-info">
+                            <h5 class="teacher-name">John Mcallister</h5>
+                            <p class="teacher-title">ĐẠI HỌC CAMBRIDGE</p>
+                            <p class="teacher-description">
+                                Chúng tôi luôn sẵn sàng hỗ trợ để bạn có thể tự tin đạt được mục tiêu cải thiện tiếng Anh của mình.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            <img src="assets/img/teacher.png" alt="Jane Doe" class="img-fluid">
+                        </div>
+                        <div class="teacher-info">
+                            <h5 class="teacher-name">Jane Doe</h5>
+                            <p class="teacher-title">ĐẠI HỌC CAMBRIDGE</p>
+                            <p class="teacher-description">
+                                Chúng tôi luôn sẵn sàng hỗ trợ để bạn có thể tự tin đạt được mục tiêu cải thiện tiếng Anh của mình.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            <img src="assets/img/teacher.png" alt="Mary Mgrayan" class="img-fluid">
+                        </div>
+                        <div class="teacher-info">
+                            <h5 class="teacher-name">Mary Mgrayan</h5>
+                            <p class="teacher-title">ĐẠI HỌC CAMBRIDGE</p>
+                            <p class="teacher-description">
+                                Chúng tôi luôn sẵn sàng hỗ trợ để bạn có thể tự tin đạt được mục tiêu cải thiện tiếng Anh của mình.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            <img src="assets/img/teacher.png" alt="Hanna Sprite" class="img-fluid">
+                        </div>
+                        <div class="teacher-info">
+                            <h5 class="teacher-name">Hanna Sprite</h5>
+                            <p class="teacher-title">ĐẠI HỌC CAMBRIDGE</p>
+                            <p class="teacher-description">
+                                Chúng tôi luôn sẵn sàng hỗ trợ để bạn có thể tự tin đạt được mục tiêu cải thiện tiếng Anh của mình.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section py-5" id="news">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">Tin tức mới nhất</h2>
+                    <p class="section-subtitle text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Ant Ngoại Ngữ - Tin tức về các chủ đề học tiếng Anh, sự nghiệp, lối sống, truyền cảm hứng,...
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="news-card featured-news">
+                        <div class="news-image">
+                            <img src="assets/img/news.png" alt="5 lợi ích của việc học tiếng Anh cùng người bản xứ" class="img-fluid">
+                        </div>
+                        <div class="news-content">
+                            <h5 class="news-title">5 lợi ích của việc học tiếng Anh cùng người bản xứ</h5>
+                            <p class="news-excerpt">
+                                Trong quá trình học tiếng Anh, muốn giỏi kỹ năng đọc hoặc viết, bạn chỉ cần có những nguồn tài liệu phong phú và đầy...
+                            </p>
+                            <div class="news-meta">
+                                <i class="bi bi-calendar3"></i>
+                                <span>13/04/2018</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6">
+                    <div class="row">
+                        <div class="col-12 mb-3" data-aos="fade-up" data-aos-delay="300">
+                            <div class="news-card news-small">
+                                <div class="row g-0">
+                                    <div class="col-4">
+                                        <div class="news-image">
+                                            <img src="assets/img/news.png" alt="Làm sao để tự tin thuyết trình" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="news-content">
+                                            <h6 class="news-title">Làm sao để tự tin thuyết trình, hợp hành bằng tiếng Anh?</h6>
+                                            <p class="news-excerpt">
+                                                Dù có thể tự tin giao tiếp với người nước ngoài, nhưng nhiều người đi làm vẫn cảm thấy "ứm đắp chân rùn" mỗi lần ph...
+                                            </p>
+                                            <div class="news-meta">
+                                                <i class="bi bi-calendar3"></i>
+                                                <span>13/04/2018</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 mb-3" data-aos="fade-up" data-aos-delay="400">
+                            <div class="news-card news-small">
+                                <div class="row g-0">
+                                    <div class="col-4">
+                                        <div class="news-image">
+                                            <img src="assets/img/news.png" alt="7 từ tiếng Anh thường bị viết sai" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="news-content">
+                                            <h6 class="news-title">7 từ tiếng Anh thường bị viết sai theo từ điển Oxford</h6>
+                                            <p class="news-excerpt">
+                                                Đối với đa số người học tiếng Anh và cả người bản ngữ, phần chính tả khi viết tiếng Anh đôi lúc cũng khá rắc rối. Bên...
+                                            </p>
+                                            <div class="news-meta">
+                                                <i class="bi bi-calendar3"></i>
+                                                <span>13/04/2018</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 mb-3" data-aos="fade-up" data-aos-delay="500">
+                            <div class="news-card news-small">
+                                <div class="row g-0">
+                                    <div class="col-4">
+                                        <div class="news-image">
+                                            <img src="assets/img/news.png" alt="Tấm man tiếng Anh cho bác cha mẹ" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="news-content">
+                                            <h6 class="news-title">Tấm man tiếng Anh cho bác cha mẹ</h6>
+                                            <p class="news-excerpt">
+                                                Trở thành cha mẹ là một cột mốc rất quan trọng trong cuộc đời con người. Trong tiếng Anh, có một số từ vựng đặc...
+                                            </p>
+                                            <div class="news-meta">
+                                                <i class="bi bi-calendar3"></i>
+                                                <span>13/04/2018</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  <!-- main -->
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Vendor JS Files - Load these first -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Load header and footer -->
   <script>
     fetch("components/header.html")
       .then(res => res.text())
       .then(data => document.getElementById("header").innerHTML = data);
   </script>
-
-  <div class="container" style="height: 2000px; width: 100%;">
-    <h1>Welcome to My Page</h1>
-    <p>This is a simple page with a header and footer loaded dynamically.</p>
-  </div> 
-  <!-- Footer -->
-  <div id="footer"></div>
-
   <script>
     fetch("components/footer.html")
       .then(res => res.text())
       .then(data => document.getElementById("footer").innerHTML = data);
   </script>
+
+  <!-- Custom JS - Load last -->
+  <script src="../assets/js/script.js"></script>
 </body>
 </html>
