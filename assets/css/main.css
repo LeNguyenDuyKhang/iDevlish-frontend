@@ -64,7 +64,7 @@ body {
 
 /* Use the correct image URLs */
 .background-image:nth-child(1) {
-    background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-tytznF02JHkQZfMY1He4fOODH6MyG1.png') !important;
+    background-image: url('../img/services.jpg') !important;
 }
 
 .background-image:nth-child(2) {
@@ -1229,4 +1229,230 @@ body {
     .section-title {
         color: #333 !important;
     }
+}
+
+/* Course Overlay Styles */
+.course-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+
+.course-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.course-card:hover .course-overlay {
+  opacity: 1;
+}
+
+.btn-view-details {
+  background: #007bff;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  transform: translateY(10px);
+}
+
+.course-overlay.show .btn-view-details,
+.course-card:hover .btn-view-details {
+  transform: translateY(0);
+}
+
+.btn-view-details:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+  color: white;
+}
+
+/* Modal Styles */
+.modal-content {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border-radius: 15px 15px 0 0;
+  padding: 20px 30px;
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.btn-close {
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.modal-footer {
+  padding: 20px 30px;
+  background: #f8f9fa;
+  border-radius: 0 0 15px 15px;
+}
+
+.course-detail-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.course-detail-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.meta-item i {
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.meta-item .meta-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.meta-item .meta-value {
+  color: #666;
+}
+
+.course-description {
+  line-height: 1.7;
+  color: #555;
+  margin: 20px 0;
+}
+
+.course-highlights {
+  margin: 20px 0;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.highlight-item:last-child {
+  border-bottom: none;
+}
+
+.highlight-item i {
+  color: #28a745;
+  font-size: 1.1rem;
+}
+
+.course-price-detail {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.price-detail-current {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.price-detail-original {
+  font-size: 1.2rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+.price-detail-discount {
+  background: #dc3545;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 10px;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .modal-footer {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+
+  .course-detail-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-view-details {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Animation for modal */
+.modal.fade .modal-dialog {
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.modal.show .modal-dialog {
+  transform: scale(1);
 }

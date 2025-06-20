@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initBackgroundSlider();
     
     // Initialize Navigation Cards
-    initNavigationCards();
+    // initNavigationCards();
     
     // Initialize other features
     initScrollIndicator();
@@ -247,7 +247,7 @@ function addDebugIndicator() {
 }
 
 // Add debug indicator when page loads
-window.addEventListener('load', addDebugIndicator);
+// window.addEventListener('load', addDebugIndicator);
 
 // Lazy loading for background images
 function lazyLoadBackgrounds() {
@@ -353,3 +353,226 @@ function preloadNextImage() {
 
 // Preload images for better performance
 setTimeout(preloadNextImage, 1000);
+
+// Course Navigation Enhancement
+document.addEventListener("DOMContentLoaded", () => {
+  // Add click tracking for navigation cards
+  const navCards = document.querySelectorAll(".nav-card")
+  navCards.forEach((card) => {
+    card.addEventListener("click", function (e) {
+      // Remove the preventDefault and alert, allow normal navigation
+      // Add loading effect
+      this.style.transform = "scale(0.95)"
+      setTimeout(() => {
+        this.style.transform = ""
+      }, 150)
+    })
+  })
+
+  // Add hover effects for course cards
+  const courseCards = document.querySelectorAll(".course-card")
+  courseCards.forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-5px)"
+    })
+
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0)"
+    })
+  })
+
+  // Smooth scroll for anchor links
+  const anchorLinks = document.querySelectorAll('a[href^="#"]')
+  anchorLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault()
+      const target = document.querySelector(this.getAttribute("href"))
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    })
+  })
+})
+
+// Function to navigate to specific course category
+function navigateToCourse(category) {
+  window.location.href = `courses.html?category=${category}`
+}
+
+// Add to global scope for inline usage
+window.navigateToCourse = navigateToCourse
+
+// Course data for modal display
+const courseData = {
+  1: {
+    title: "Chiến lược tăng vốn từ vựng tiếng Anh cho người mất căn bản",
+    instructor: "John Smith",
+    duration: "15 giờ",
+    level: "Cơ bản",
+    students: "234 học viên",
+    rating: "4.8/5",
+    currentPrice: "360.000₫",
+    originalPrice: "650.000₫",
+    discount: "35%",
+    image: "/assets/img/course.png",
+    description:
+      "Khóa học giúp bạn nắm vững các kỹ năng tăng vốn từ vựng tiếng Anh một cách hiệu quả và bền vững. Phù hợp cho người mới bắt đầu hoặc muốn củng cố lại kiến thức cơ bản.",
+    highlights: [
+      "Học 1000+ từ vựng thông dụng nhất",
+      "Phương pháp ghi nhớ từ vựng hiệu quả",
+      "Luyện tập với các tình huống thực tế",
+      "Tài liệu học tập đầy đủ",
+      "Hỗ trợ 24/7 từ giảng viên",
+    ],
+  },
+  2: {
+    title: "Chiến lược học ngữ pháp tiếng Anh cho người mất căn bản",
+    instructor: "Sarah Johnson",
+    duration: "20 giờ",
+    level: "Cơ bản",
+    students: "189 học viên",
+    rating: "4.9/5",
+    currentPrice: "490.000₫",
+    originalPrice: "510.000₫",
+    discount: "4%",
+    image: "/assets/img/course.png",
+    description:
+      "Khóa học ngữ pháp tiếng Anh từ cơ bản đến nâng cao, giúp bạn hiểu rõ cấu trúc câu và sử dụng ngữ pháp một cách chính xác trong giao tiếp.",
+    highlights: [
+      "12 chủ đề ngữ pháp cơ bản",
+      "Bài tập thực hành phong phú",
+      "Giải thích dễ hiểu, sinh động",
+      "Ứng dụng ngay vào giao tiếp",
+      "Kiểm tra đánh giá định kỳ",
+    ],
+  },
+  3: {
+    title: "Chiến lược học phát âm và phản xạ nói tiếng Anh cho người mất căn bản",
+    instructor: "Michael Brown",
+    duration: "18 giờ",
+    level: "Trung cấp",
+    students: "156 học viên",
+    rating: "4.7/5",
+    currentPrice: "550.000₫",
+    originalPrice: "680.000₫",
+    discount: "19%",
+    image: "/assets/img/course.png",
+    description:
+      "Khóa học tập trung vào việc cải thiện phát âm và khả năng phản xạ nói tiếng Anh tự nhiên, giúp bạn giao tiếp tự tin hơn.",
+    highlights: [
+      "Luyện phát âm chuẩn quốc tế",
+      "Phát triển phản xạ nói tự nhiên",
+      "Thực hành với giảng viên bản ngữ",
+      "Ghi âm và nhận xét chi tiết",
+      "Cải thiện ngữ điệu và nhấn âm",
+    ],
+  },
+}
+
+// Initialize course detail modal functionality
+document.addEventListener("DOMContentLoaded", () => {
+  // Handle view details button clicks
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".btn-view-details")) {
+      const courseId = e.target.closest(".btn-view-details").getAttribute("data-course-id")
+      showCourseDetail(courseId)
+    }
+
+    // Handle enroll from modal
+    if (e.target.closest("#enrollFromModal")) {
+      const courseTitle = document.getElementById("courseDetailModalLabel").textContent
+      alert(`Đăng ký thành công khóa học: ${courseTitle}`)
+
+      // Close modal
+      const modalElement = document.getElementById("courseDetailModal")
+      const modal = bootstrap.Modal.getInstance(modalElement)
+      if (modal) {
+        modal.hide()
+      }
+    }
+  })
+})
+
+function showCourseDetail(courseId) {
+  const course = courseData[courseId]
+  if (!course) return
+
+  // Update modal title
+  document.getElementById("courseDetailModalLabel").textContent = course.title
+
+  // Generate modal content
+  const modalBody = document.getElementById("courseDetailModalBody")
+  modalBody.innerHTML = `
+        <img src="${course.image}" alt="${course.title}" class="course-detail-image">
+        
+        <div class="course-detail-meta">
+            <div class="meta-item">
+                <i class="bi bi-person-fill"></i>
+                <div>
+                    <div class="meta-label">Giảng viên</div>
+                    <div class="meta-value">${course.instructor}</div>
+                </div>
+            </div>
+            <div class="meta-item">
+                <i class="bi bi-clock-fill"></i>
+                <div>
+                    <div class="meta-label">Thời lượng</div>
+                    <div class="meta-value">${course.duration}</div>
+                </div>
+            </div>
+            <div class="meta-item">
+                <i class="bi bi-bar-chart-fill"></i>
+                <div>
+                    <div class="meta-label">Trình độ</div>
+                    <div class="meta-value">${course.level}</div>
+                </div>
+            </div>
+            <div class="meta-item">
+                <i class="bi bi-people-fill"></i>
+                <div>
+                    <div class="meta-label">Học viên</div>
+                    <div class="meta-value">${course.students}</div>
+                </div>
+            </div>
+            <div class="meta-item">
+                <i class="bi bi-star-fill"></i>
+                <div>
+                    <div class="meta-label">Đánh giá</div>
+                    <div class="meta-value">${course.rating}</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="course-price-detail">
+            <div class="price-detail-current">${course.currentPrice}</div>
+            <span class="price-detail-original">${course.originalPrice}</span>
+            <span class="price-detail-discount">Giảm ${course.discount}</span>
+        </div>
+        
+        <div class="course-description">
+            <h6><i class="bi bi-info-circle"></i> Mô tả khóa học</h6>
+            <p>${course.description}</p>
+        </div>
+        
+        <div class="course-highlights">
+            <h6><i class="bi bi-check-circle"></i> Điểm nổi bật</h6>
+            ${course.highlights
+              .map(
+                (highlight) => `
+                <div class="highlight-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>${highlight}</span>
+                </div>
+            `,
+              )
+              .join("")}
+        </div>
+    `
+
+  // Show modal
+  const modal = new bootstrap.Modal(document.getElementById("courseDetailModal"))
+  modal.show()
+}
