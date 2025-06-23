@@ -190,14 +190,24 @@
     }
     
     .newsletter-form .input-group {
+        display: flex;
         flex-direction: column;
         gap: 10px;
+        width: 100%;
     }
     
-    .newsletter-input,
-    .newsletter-btn {
-        width: 100%;
+    .newsletter-input {
+        display: block;
+        width: 100% !important;
+        min-width: 0;
+        margin-bottom: 0;
         border-radius: 5px !important;
+        box-sizing: border-box;
+    }
+    .newsletter-btn {
+        width: 100% !important;
+        border-radius: 5px !important;
+        margin-top: 0;
     }
     
     .newsletter-btn {

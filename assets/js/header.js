@@ -70,3 +70,4 @@ function initializeHeader() {
 document.addEventListener("DOMContentLoaded", () => {
   initializeHeader()
 })
+

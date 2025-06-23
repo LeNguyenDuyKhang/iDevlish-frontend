@@ -496,6 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
+// Update the modal content generation to include add to cart button
 function showCourseDetail(courseId) {
   const course = courseData[courseId]
   if (!course) return
@@ -572,7 +573,249 @@ function showCourseDetail(courseId) {
         </div>
     `
 
+  // Update modal footer to include add to cart
+  const modalFooter = document.querySelector("#courseDetailModal .modal-footer")
+  modalFooter.innerHTML = `
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle"></i> Đóng
+        </button>
+        <a href="courses.html" class="btn btn-outline-primary">
+            <i class="bi bi-grid-3x3-gap"></i> Xem tất cả khóa học
+        </a>
+        <button type="button" class="btn btn-primary" onclick="addToCartFromModal('${courseId}')">
+            <i class="bi bi-credit-card"></i> Đăng ký
+        </button>
+    `
+
   // Show modal
   const modal = new bootstrap.Modal(document.getElementById("courseDetailModal"))
   modal.show()
 }
+
+// Add to cart from modal
+function addToCartFromModal(courseId) {
+  const course = courseData[courseId]
+  if (course && typeof addToCart === "function") {
+    addToCart({
+      id: courseId,
+      title: course.title,
+      image: course.image,
+      currentPrice: course.currentPrice,
+      originalPrice: course.originalPrice,
+      instructor: course.instructor,
+      duration: course.duration,
+      level: course.level,
+    })
+
+    // Close modal
+    const modalElement = document.getElementById("courseDetailModal")
+    const modal = bootstrap.Modal.getInstance(modalElement)
+    if (modal) {
+      modal.hide()
+    }
+  }
+}
+
+// Add to cart and go to checkout
+function addToCartAndCheckout(courseId) {
+  addToCartFromModal(courseId)
+  setTimeout(() => {
+    window.location.href = "cart.html"
+  }, 500)
+}
+
+// Update existing registration buttons to add to cart
+document.addEventListener("DOMContentLoaded", () => {
+  // Update course registration buttons
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".btn") && e.target.closest(".btn").textContent.includes("Đăng ký ngay")) {
+      e.preventDefault()
+
+      // Get course card
+      const courseCard = e.target.closest(".course-card")
+      if (courseCard) {
+        const courseId = courseCard.getAttribute("data-course-id")
+        if (courseId && courseData[courseId]) {
+          const course = courseData[courseId]
+          if (typeof addToCart === "function") {
+            addToCart({
+              id: courseId,
+              title: course.title,
+              image: course.image,
+              currentPrice: course.currentPrice,
+              originalPrice: course.originalPrice,
+              instructor: course.instructor,
+              duration: course.duration,
+              level: course.level,
+            })
+          }
+        }
+      }
+    }
+  })
+})
+
+// Thêm CSS cho cart update animation
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize floating cart if not exists
+  if (!document.getElementById("floating-cart")) {
+    const floatingCart = document.createElement("div")
+    floatingCart.className = "floating-cart"
+    floatingCart.id = "floating-cart"
+    floatingCart.innerHTML = `
+      <div class="cart-icon">
+        <i class="bi bi-bag-fill"></i>
+        <span class="cart-badge hidden" id="floating-cart-count">0</span>
+      </div>
+    `
+
+    // Add styles if not exists
+    if (!document.getElementById("floating-cart-styles")) {
+      const style = document.createElement("style")
+      style.id = "floating-cart-styles"
+      style.textContent = `
+        .floating-cart {
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          z-index: 1000;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .floating-cart:hover {
+          transform: translateY(-3px);
+        }
+        .cart-icon {
+          position: relative;
+          width: 60px;
+          height: 60px;
+          background: linear-gradient(135deg, #007bff, #0056b3);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 1.5rem;
+          box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4);
+          transition: all 0.3s ease;
+        }
+        .floating-cart:hover .cart-icon {
+          background: linear-gradient(135deg, #0056b3, #004085);
+          box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6);
+        }
+        .cart-badge {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          background: #dc3545;
+          color: white;
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.8rem;
+          font-weight: 700;
+          border: 2px solid white;
+          animation: pulse 2s infinite;
+        }
+        .cart-badge.hidden {
+          display: none !important;
+        }
+        .floating-cart.cart-update {
+          animation: cartPulse 0.3s ease-in-out;
+        }
+        @keyframes cartPulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.2); }
+          100% { transform: scale(1); }
+        }
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+          .floating-cart {
+            bottom: 20px;
+            right: 20px;
+          }
+          .cart-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 1.3rem;
+          }
+          .cart-badge {
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+          }
+        }
+      `
+      document.head.appendChild(style)
+    }
+
+    document.body.appendChild(floatingCart)
+
+    // Add click event
+    floatingCart.addEventListener("click", () => {
+      window.location.href = "cart.html"
+    })
+
+    // Update cart count on page load
+    setTimeout(() => {
+      try {
+        const cart = JSON.parse(localStorage.getItem("antCart") || "[]")
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0)
+
+        const floatingCartCount = document.getElementById("floating-cart-count")
+        const cartBadge = document.querySelector(".cart-badge")
+
+        if (floatingCartCount) {
+          floatingCartCount.textContent = totalItems
+        }
+
+        if (cartBadge) {
+          if (totalItems > 0) {
+            cartBadge.classList.remove("hidden")
+          } else {
+            cartBadge.classList.add("hidden")
+          }
+        }
+      } catch (error) {
+        console.error("Error loading cart count:", error)
+      }
+    }, 100)
+  }
+})
+
+const bootstrap = window.bootstrap
+window.addToCart = function(product) {
+  // Lấy giỏ hàng từ localStorage hoặc tạo mới
+  let cart = JSON.parse(localStorage.getItem("antCart") || "[]");
+  // Kiểm tra sản phẩm đã có trong giỏ chưa
+  const index = cart.findIndex(item => item.id == product.id);
+  if (index > -1) {
+    cart[index].quantity = (cart[index].quantity || 1) + 1;
+  } else {
+    cart.push({...product, quantity: 1});
+  }
+  localStorage.setItem("antCart", JSON.stringify(cart));
+  // Cập nhật badge số lượng nếu có
+  const floatingCartCount = document.getElementById("floating-cart-count");
+  const cartBadge = document.querySelector(".cart-badge");
+  if (floatingCartCount) {
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    floatingCartCount.textContent = totalItems;
+    if (cartBadge) {
+      cartBadge.classList.toggle("hidden", totalItems === 0);
+    }
+  }
+  // Hiệu ứng cập nhật giỏ hàng
+  const floatingCart = document.getElementById("floating-cart");
+  if (floatingCart) {
+    floatingCart.classList.add("cart-update");
+    setTimeout(() => floatingCart.classList.remove("cart-update"), 400);
+  }
+};

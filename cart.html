@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng - Ant Ngoại Ngữ</title>
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
+
+    <link href="../assets/css/main.css" rel="stylesheet">
+    <link href="../assets/css/cart.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- Cart Section -->
+    <section class="cart-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Cart Header -->
+                    <div class="cart-header mb-4" data-aos="fade-up">
+                        <h1 class="cart-title">
+                            GIỎ HÀNG (<span id="cart-count">0</span> khóa học)
+                        </h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                                <li class="breadcrumb-item"><a href="courses.html">Khóa học</a></li>
+                                <li class="breadcrumb-item active">Giỏ hàng</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <!-- Empty Cart -->
+                    <div id="empty-cart" class="empty-cart text-center py-5" style="display: none;" data-aos="fade-up">
+                        <div class="empty-cart-icon mb-4">
+                            <i class="bi bi-cart-x"></i>
+                        </div>
+                        <h3>Giỏ hàng của bạn đang trống</h3>
+                        <p class="text-muted mb-4">Hãy khám phá các khóa học tuyệt vời của chúng tôi</p>
+                        <a href="courses.html" class="btn btn-primary btn-lg">
+                            <i class="bi bi-book"></i> Xem khóa học
+                        </a>
+                    </div>
+
+                    <!-- Cart Content -->
+                    <div id="cart-content" class="row">
+                        <!-- Cart Items -->
+                        <div class="col-lg-8 col-md-12">
+                            <div class="cart-items" id="cart-items">
+                                <!-- Cart items will be loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Cart Summary -->
+                        <div class="col-lg-4 col-md-12">
+                            <div class="cart-summary" data-aos="fade-left">
+                                <div class="summary-card">
+                                    <h4 class="summary-title">Tóm tắt đơn hàng</h4>
+                                    
+                                    <div class="summary-row">
+                                        <span>Tạm tính:</span>
+                                        <span id="subtotal">0₫</span>
+                                    </div>
+                                    
+                                    <div class="summary-row">
+                                        <span>Giảm giá:</span>
+                                        <span id="discount" class="text-success">-0₫</span>
+                                    </div>
+                                    
+                                    <div class="summary-divider"></div>
+                                    
+                                    <div class="summary-row total-row">
+                                        <span>Thành tiền:</span>
+                                        <span id="total" class="total-price">0₫</span>
+                                    </div>
+
+                                    <!-- Coupon Code -->
+                                    <div class="coupon-section mt-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="coupon-code" placeholder="Mã giảm giá">
+                                            <button class="btn btn-outline-secondary" type="button" id="apply-coupon">
+                                                Áp dụng
+                                            </button>
+                                        </div>
+                                        <div id="coupon-message" class="mt-2"></div>
+                                    </div>
+
+                                    <!-- Action Buttons -->
+                                    <div class="action-buttons mt-4">
+                                        <button class="btn btn-primary btn-lg w-100 mb-3" id="checkout-btn">
+                                            <i class="bi bi-credit-card"></i> THANH TOÁN NGAY
+                                        </button>
+                                        <a href="courses.html" class="btn btn-outline-primary w-100">
+                                            <i class="bi bi-arrow-left"></i> CHỌN KHÓA HỌC KHÁC
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Courses -->
+    <section class="recommended-courses py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Khóa học được đề xuất</h2>
+                    <p class="section-subtitle">Các khóa học phù hợp với bạn</p>
+                </div>
+            </div>
+            <div class="row" id="recommended-courses">
+                <!-- Recommended courses will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Floating Cart Icon -->
+    <div class="floating-cart" id="floating-cart">
+        <div class="cart-icon">
+            <i class="bi bi-bag-fill"></i>
+            <span class="cart-badge" id="floating-cart-count">0</span>
+        </div>
+    </div>
+
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
+
+    <!-- Load header and footer -->
+    <script>
+        fetch("components/header.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("header").innerHTML = data);
+    </script>
+    <script>
+        fetch("components/footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+
+    <!-- Cart JS -->
+    <script src="../assets/js/cart.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
