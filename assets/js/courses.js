@@ -6,6 +6,7 @@ class CourseManager {
     this.currentPage = 1;
     this.coursesPerPage = 9;
     this.currentCategory = this.getCategoryFromURL();
+    this.searchKeyword = this.getSearchKeywordFromURL();
 
     this.init();
   }
@@ -268,7 +269,15 @@ class CourseManager {
   // Get category from URL parameter
   getCategoryFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("category") || "giao-tiep";
+    const category = urlParams.get("category");
+    const validCategories = Object.keys(this.getCourseData());
+    return category && validCategories.includes(category) ? category : "giao-tiep";
+  }
+
+  // Get search keyword from URL parameter
+  getSearchKeywordFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("q")?.trim().toLowerCase() || "";
   }
 
   // Initialize the course manager
@@ -288,27 +297,42 @@ class CourseManager {
     }
   }
 
-  // Load course data based on current category
+  // Load course data based on current category or search
   loadCourseData() {
     const courseData = this.getCourseData();
-    const categoryData =
-      courseData[this.currentCategory] || courseData["giao-tiep"];
-
-    this.courses = categoryData.courses;
-    this.categoryInfo = {
-      title: categoryData.title,
-      subtitle: categoryData.subtitle
-    };
+    if (this.searchKeyword) {
+      // If searching, load all courses from all categories
+      this.courses = [];
+      Object.values(courseData).forEach((category) => {
+        this.courses = this.courses.concat(category.courses);
+      });
+      this.categoryInfo = {
+        title: "Kết quả tìm kiếm",
+        subtitle: `Kết quả cho từ khóa: "${this.searchKeyword}"`
+      };
+    } else {
+      // Load courses for the current category
+      const categoryData = courseData[this.currentCategory] || courseData["giao-tiep"];
+      this.courses = categoryData.courses;
+      this.categoryInfo = {
+        title: categoryData.title,
+        subtitle: categoryData.subtitle
+      };
+    }
   }
 
-  // Update page content based on category
+  // Update page content based on category or search
   updatePageContent() {
     document.getElementById("page-title").textContent = this.categoryInfo.title;
-    document.getElementById("page-subtitle").textContent =
-      this.categoryInfo.subtitle;
-    document.getElementById("breadcrumb-current").textContent =
-      this.categoryInfo.title;
+    document.getElementById("page-subtitle").textContent = this.categoryInfo.subtitle;
+    document.getElementById("breadcrumb-current").textContent = this.categoryInfo.title;
     document.title = `${this.categoryInfo.title} - Ant Ngoại Ngữ`;
+
+    // Update search input field with keyword if present
+    const searchInput = document.querySelector('input[name="q"]');
+    if (searchInput && this.searchKeyword) {
+      searchInput.value = this.searchKeyword;
+    }
   }
 
   // Bind event listeners
@@ -316,16 +340,16 @@ class CourseManager {
     // Filter events
     document
       .getElementById("price-filter")
-      .addEventListener("change", () => this.filterAndDisplayCourses());
+      ?.addEventListener("change", () => this.filterAndDisplayCourses());
     document
       .getElementById("duration-filter")
-      .addEventListener("change", () => this.filterAndDisplayCourses());
+      ?.addEventListener("change", () => this.filterAndDisplayCourses());
     document
       .getElementById("level-filter")
-      .addEventListener("change", () => this.filterAndDisplayCourses());
+      ?.addEventListener("change", () => this.filterAndDisplayCourses());
     document
       .getElementById("rating-filter")
-      .addEventListener("change", () => this.filterAndDisplayCourses());
+      ?.addEventListener("change", () => this.filterAndDisplayCourses());
 
     // Sort events
     document.querySelectorAll('input[name="sort"]').forEach((radio) => {
@@ -335,10 +359,10 @@ class CourseManager {
     // Clear filters
     document
       .getElementById("clear-filters")
-      .addEventListener("click", () => this.clearFilters());
+      ?.addEventListener("click", () => this.clearFilters());
 
     // Course card events (delegated)
-    document.getElementById("courses-grid").addEventListener("click", (e) => {
+    document.getElementById("courses-grid")?.addEventListener("click", (e) => {
       if (e.target.closest(".btn-view-details")) {
         const courseId = Number.parseInt(
           e.target.closest(".course-card").dataset.courseId
@@ -353,7 +377,7 @@ class CourseManager {
     });
 
     // Modal enroll button
-    document.getElementById("enrollBtn").addEventListener("click", () => {
+    document.getElementById("enrollBtn")?.addEventListener("click", () => {
       const courseId = Number.parseInt(
         document.getElementById("courseModal").dataset.courseId
       );
@@ -377,12 +401,22 @@ class CourseManager {
 
   // Apply filters
   applyFilters() {
-    const priceFilter = document.getElementById("price-filter").value;
-    const durationFilter = document.getElementById("duration-filter").value;
-    const levelFilter = document.getElementById("level-filter").value;
-    const ratingFilter = document.getElementById("rating-filter").value;
+    let filtered = this.courses;
 
-    this.filteredCourses = this.courses.filter((course) => {
+    // Apply search keyword filter if present
+    if (this.searchKeyword) {
+      filtered =(filtered.filter((course) =>
+        course.title.toLowerCase().includes(this.searchKeyword)
+      ));
+    }
+
+    // Apply other filters
+    const priceFilter = document.getElementById("price-filter")?.value || "";
+    const durationFilter = document.getElementById("duration-filter")?.value || "";
+    const levelFilter = document.getElementById("level-filter")?.value || "";
+    const ratingFilter = document.getElementById("rating-filter")?.value || "";
+
+    this.filteredCourses = filtered.filter((course) => {
       // Price filter
       if (priceFilter) {
         const price = course.currentPrice;
@@ -431,35 +465,11 @@ class CourseManager {
 
       return true;
     });
-    const params = new URLSearchParams(window.location.search);
-    const keyword = params.get("q");
-    const category = params.get("category");
-
-    // Nếu có từ khóa tìm kiếm, render tất cả khóa học để lọc
-    if (keyword) {
-      // Gộp tất cả khóa học từ mọi category
-      let allCourses = [];
-      Object.values(this.getCourseData()).forEach((cat) => {
-        allCourses = allCourses.concat(cat.courses);
-      });
-      this.filteredCourses = allCourses;
-    } else if (category) {
-      // Lọc theo category như cũ
-      const data = this.getCourseData();
-      this.filteredCourses = data[category]?.courses || [];
-    } else {
-      // Nếu không có filter, lấy tất cả
-      let allCourses = [];
-      Object.values(this.getCourseData()).forEach((cat) => {
-        allCourses = allCourses.concat(cat.courses);
-      });
-      this.filteredCourses = allCourses;
-    }
   }
 
   // Apply sorting
   applySorting() {
-    const sortBy = document.querySelector('input[name="sort"]:checked').value;
+    const sortBy = document.querySelector('input[name="sort"]:checked')?.value || "newest";
 
     this.filteredCourses.sort((a, b) => {
       switch (sortBy) {
@@ -482,8 +492,10 @@ class CourseManager {
     const coursesGrid = document.getElementById("courses-grid");
     const noResultsState = document.getElementById("no-results-state");
 
+    if (!coursesGrid || !noResultsState) return;
+
     if (this.filteredCourses.length === 0) {
-      coursesGrid.innerHTML = "";
+      coursesGrid.innerHTML = '<div class="col-12 text-center py-5"><div class="alert alert-warning">Không tìm thấy khóa học phù hợp.</div></div>';
       noResultsState.style.display = "block";
       return;
     }
@@ -507,12 +519,6 @@ class CourseManager {
     if (typeof AOS !== "undefined") {
       AOS.refresh();
     }
-    // Lọc theo từ khóa nếu có
-    const params = new URLSearchParams(window.location.search);
-    const keyword = params.get("q");
-    if (keyword) {
-      filterCoursesByKeyword(keyword);
-    }
   }
 
   // Generate course card HTML
@@ -528,95 +534,71 @@ class CourseManager {
       "☆".repeat(5 - Math.ceil(course.rating));
 
     return `
-            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
-                <div class="course-card" data-course-id="${course.id}">
-                    <div class="course-image">
-                        <img src="${course.image}" alt="${
-      course.title
-    }" class="img-fluid">
-                        ${
-                          course.badge
-                            ? `<div class="course-badge">${course.badge}</div>`
-                            : ""
-                        }
-                    </div>
-                    <div class="course-content">
-                        <div class="course-category">${course.category}</div>
-                        <h5 class="course-title">${course.title}</h5>
-                        <div class="course-instructor">
-                            <i class="bi bi-person"></i> ${course.instructor}
-                        </div>
-                        <div class="course-meta">
-                            <span><i class="bi bi-clock"></i> ${
-                              course.duration
-                            } giờ</span>
-                            <span><i class="bi bi-bar-chart"></i> ${this.getLevelText(
-                              course.level
-                            )}</span>
-                        </div>
-                        <div class="course-rating">
-                            <div class="stars">${stars}</div>
-                            <span class="rating-count">${course.rating} (${
-      course.ratingCount
-    })</span>
-                        </div>
-                        <div class="course-price">
-                            <div class="price-info">
-                                <span class="current-price">${this.formatPrice(
-                                  course.currentPrice
-                                )}</span>
-                                ${
-                                  course.originalPrice > 0
-                                    ? `
-                                    <span class="original-price">${this.formatPrice(
-                                      course.originalPrice
-                                    )}</span>
-                                    <span class="discount">-${discount}%</span>
-                                `
-                                    : ""
-                                }
-                            </div>
-                        </div>
-                        <div class="course-actions mt-3">
-                            <button class="btn btn-view-details">
-                                <i class="bi bi-eye"></i> Xem chi tiết
-                            </button>
-                            <button class="btn btn-enroll">
-                                <i class="bi bi-cart-plus"></i> Đăng ký
-                            </button>
-                        </div>
-                    </div>
-                </div>
+      <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+        <div class="course-card" data-course-id="${course.id}">
+          <div class="course-image">
+            <img src="${course.image}" alt="${course.title}" class="img-fluid">
+            ${course.badge ? `<div class="course-badge">${course.badge}</div>` : ""}
+          </div>
+          <div class="course-content">
+            <div class="course-category">${course.category}</div>
+            <h5 class="course-title">${course.title}</h5>
+            <div class="course-instructor">
+              <i class="bi bi-person"></i> ${course.instructor}
             </div>
-        `;
+            <div class="course-meta">
+              <span><i class="bi bi-clock"></i> ${course.duration} giờ</span>
+              <span><i class="bi bi-bar-chart"></i> ${this.getLevelText(course.level)}</span>
+            </div>
+            <div class="course-rating">
+              <div class="stars">${stars}</div>
+              <span class="rating-count">${course.rating} (${course.ratingCount})</span>
+            </div>
+            <div class="course-price">
+              <div class="price-info">
+                <span class="current-price">${this.formatPrice(course.currentPrice)}</span>
+                ${
+                  course.originalPrice > 0
+                    ? `
+                    <span class="original-price">${this.formatPrice(course.originalPrice)}</span>
+                    <span class="discount">-${discount}%</span>
+                  `
+                    : ""
+                }
+              </div>
+            </div>
+            <div class="course-actions mt-3">
+              <button class="btn btn-view-details">
+                <i class="bi bi-eye"></i> Xem chi tiết
+              </button>
+              <button class="btn btn-enroll">
+                <i class="bi bi-cart-plus"></i> Đăng ký
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   // Generate pagination
   generatePagination() {
-    const totalPages = Math.ceil(
-      this.filteredCourses.length / this.coursesPerPage
-    );
+    const totalPages = Math.ceil(this.filteredCourses.length / this.coursesPerPage);
     const pagination = document.getElementById("pagination");
 
-    if (totalPages <= 1) {
-      pagination.innerHTML = "";
+    if (!pagination || totalPages <= 1) {
+      if (pagination) pagination.innerHTML = "";
       return;
     }
 
-    let paginationHTML = "";
+    let paginationHTML = `
+      <li class="page-item ${this.currentPage === 1 ? "disabled" : ""}">
+        <a class="page-link" href="#" data-page="${this.currentPage - 1}">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+      </li>
+    `;
 
-    // Previous button
-    paginationHTML += `
-            <li class="page-item ${this.currentPage === 1 ? "disabled" : ""}">
-                <a class="page-link" href="#" data-page="${
-                  this.currentPage - 1
-                }">
-                    <i class="bi bi-chevron-left"></i>
-                </a>
-            </li>
-        `;
-
-    // Page numbers
     for (let i = 1; i <= totalPages; i++) {
       if (
         i === 1 ||
@@ -624,29 +606,22 @@ class CourseManager {
         (i >= this.currentPage - 2 && i <= this.currentPage + 2)
       ) {
         paginationHTML += `
-                    <li class="page-item ${
-                      i === this.currentPage ? "active" : ""
-                    }">
-                        <a class="page-link" href="#" data-page="${i}">${i}</a>
-                    </li>
-                `;
+          <li class="page-item ${i === this.currentPage ? "active" : ""}">
+            <a class="page-link" href="#" data-page="${i}">${i}</a>
+          </li>
+        `;
       } else if (i === this.currentPage - 3 || i === this.currentPage + 3) {
         paginationHTML += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
       }
     }
 
-    // Next button
     paginationHTML += `
-            <li class="page-item ${
-              this.currentPage === totalPages ? "disabled" : ""
-            }">
-                <a class="page-link" href="#" data-page="${
-                  this.currentPage + 1
-                }">
-                    <i class="bi bi-chevron-right"></i>
-                </a>
-            </li>
-        `;
+      <li class="page-item ${this.currentPage === totalPages ? "disabled" : ""}">
+        <a class="page-link" href="#" data-page="${this.currentPage + 1}">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      </li>
+    `;
 
     pagination.innerHTML = paginationHTML;
 
@@ -657,9 +632,7 @@ class CourseManager {
         e.target.closest(".page-link") &&
         !e.target.closest(".page-item").classList.contains("disabled")
       ) {
-        const page = Number.parseInt(
-          e.target.closest(".page-link").dataset.page
-        );
+        const page = Number.parseInt(e.target.closest(".page-link").dataset.page);
         if (page && page !== this.currentPage) {
           this.currentPage = page;
           this.displayCourses();
@@ -686,53 +659,43 @@ class CourseManager {
       "☆".repeat(5 - Math.ceil(course.rating));
 
     modalBody.innerHTML = `
-            <img src="${course.image}" alt="${
-      course.title
-    }" class="course-detail-image">
-            <div class="course-detail-meta">
-                <div class="meta-item">
-                    <i class="bi bi-person"></i>
-                    <span><strong>Giảng viên:</strong> ${
-                      course.instructor
-                    }</span>
-                </div>
-                <div class="meta-item">
-                    <i class="bi bi-clock"></i>
-                    <span><strong>Thời lượng:</strong> ${
-                      course.duration
-                    } giờ</span>
-                </div>
-                <div class="meta-item">
-                    <i class="bi bi-bar-chart"></i>
-                    <span><strong>Trình độ:</strong> ${this.getLevelText(
-                      course.level
-                    )}</span>
-                </div>
-                <div class="meta-item">
-                    <i class="bi bi-star-fill"></i>
-                    <span><strong>Đánh giá:</strong> ${course.rating} (${
-      course.ratingCount
-    } đánh giá)</span>
-                </div>
+      <img src="${course.image}" alt="${course.title}" class="course-detail-image">
+      <div class="course-detail-meta">
+        <div class="meta-item">
+          <i class="bi bi-person"></i>
+          <span><strong>Giảng viên:</strong> ${course.instructor}</span>
+        </div>
+        <div class="meta-item">
+          <i class="bi bi-clock"></i>
+          <span><strong>Thời lượng:</strong> ${course.duration} giờ</span>
+        </div>
+        <div class="meta-item">
+          <i class="bi bi-bar-chart"></i>
+          <span><strong>Trình độ:</strong> ${this.getLevelText(course.level)}</span>
+        </div>
+        <div class="meta-item">
+          <i class="bi bi-star-fill"></i>
+          <span><strong>Đánh giá:</strong> ${course.rating} (${course.ratingCount} đánh giá)</span>
+        </div>
+      </div>
+      <div class="course-description">
+        <h6>Mô tả khóa học:</h6>
+        <p>${course.description}</p>
+      </div>
+      <div class="course-curriculum">
+        <h6>Nội dung khóa học:</h6>
+        ${course.curriculum
+          .map(
+            (item) => `
+            <div class="curriculum-item">
+              <i class="bi bi-check-circle"></i>
+              <span>${item}</span>
             </div>
-            <div class="course-description">
-                <h6>Mô tả khóa học:</h6>
-                <p>${course.description}</p>
-            </div>
-            <div class="course-curriculum">
-                <h6>Nội dung khóa học:</h6>
-                ${course.curriculum
-                  .map(
-                    (item) => `
-                    <div class="curriculum-item">
-                        <i class="bi bi-check-circle"></i>
-                        <span>${item}</span>
-                    </div>
-                `
-                  )
-                  .join("")}
-            </div>
-        `;
+          `
+          )
+          .join("")}
+      </div>
+    `;
 
     const modalInstance = new bootstrap.Modal(modal);
     modalInstance.show();
@@ -744,19 +707,16 @@ class CourseManager {
     if (!course) return;
 
     // Close modal if open
-    const modal = bootstrap.Modal.getInstance(
-      document.getElementById("courseModal")
-    );
+    const modal = bootstrap.Modal.getInstance(document.getElementById("courseModal"));
     if (modal) modal.hide();
 
-    // Prepare course data for cart with correct format
+    // Prepare course data for cart
     const courseData = {
       id: course.id.toString(),
       title: course.title,
       image: course.image,
       currentPrice: this.formatPrice(course.currentPrice),
-      originalPrice:
-        course.originalPrice > 0 ? this.formatPrice(course.originalPrice) : "",
+      originalPrice: course.originalPrice > 0 ? this.formatPrice(course.originalPrice) : "",
       instructor: course.instructor,
       duration: `${course.duration} giờ`,
       level: this.getLevelText(course.level),
@@ -769,18 +729,15 @@ class CourseManager {
     if (typeof window.addToCart === "function") {
       window.addToCart(courseData);
     } else {
-      // Fallback: Save directly to localStorage and show notification
+      // Fallback: Save directly to localStorage
       this.saveToCartDirectly(courseData);
     }
   }
 
-  // Add new method to save directly to cart
+  // Save directly to cart
   saveToCartDirectly(courseData) {
     try {
-      // Get existing cart
       const cart = JSON.parse(localStorage.getItem("antCart") || "[]");
-
-      // Check if item already exists
       const existingItem = cart.find((item) => item.id === courseData.id);
 
       if (existingItem) {
@@ -793,13 +750,8 @@ class CourseManager {
         });
       }
 
-      // Save to localStorage
       localStorage.setItem("antCart", JSON.stringify(cart));
-
-      // Show success notification
       this.showSuccessNotification(courseData.title);
-
-      // Update floating cart if exists
       this.updateFloatingCartCount();
     } catch (error) {
       console.error("Error saving to cart:", error);
@@ -807,9 +759,8 @@ class CourseManager {
     }
   }
 
-  // Add method to show success notification
+  // Show success notification
   showSuccessNotification(courseTitle) {
-    // Create notification
     const notification = document.createElement("div");
     notification.className = "cart-notification";
     notification.innerHTML = `
@@ -822,12 +773,11 @@ class CourseManager {
       </div>
     `;
 
-    // Add styles
     notification.style.cssText = `
       position: fixed;
       top: 100px;
       right: 30px;
-      background:rgb(40, 104, 167);
+      background: rgb(40, 104, 167);
       color: white;
       padding: 15px 20px;
       border-radius: 8px;
@@ -840,12 +790,10 @@ class CourseManager {
 
     document.body.appendChild(notification);
 
-    // Animate in
     setTimeout(() => {
       notification.style.transform = "translateX(0)";
     }, 100);
 
-    // Animate out and remove
     setTimeout(() => {
       notification.style.transform = "translateX(100%)";
       setTimeout(() => {
@@ -856,7 +804,7 @@ class CourseManager {
     }, 4000);
   }
 
-  // Add method to update floating cart count
+  // Update floating cart count
   updateFloatingCartCount() {
     try {
       const cart = JSON.parse(localStorage.getItem("antCart") || "[]");
@@ -879,7 +827,6 @@ class CourseManager {
         }
       }
 
-      // Animate floating cart
       const floatingCart = document.getElementById("floating-cart");
       if (floatingCart) {
         floatingCart.classList.add("cart-update");
@@ -901,6 +848,17 @@ class CourseManager {
     document.getElementById("sort-newest").checked = true;
 
     this.currentPage = 1;
+    this.searchKeyword = "";
+    const searchInput = document.querySelector('input[name="q"]');
+    if (searchInput) searchInput.value = "";
+
+    // Update URL to remove search query
+    const url = new URL(window.location);
+    url.searchParams.delete("q");
+    window.history.pushState({}, "", url);
+
+    this.loadCourseData();
+    this.updatePageContent();
     this.filterAndDisplayCourses();
   }
 
@@ -908,20 +866,29 @@ class CourseManager {
   updateResultsCount() {
     const count = this.filteredCourses.length;
     const resultsCount = document.getElementById("results-count");
-    resultsCount.textContent = `Hiển thị ${count} khóa học`;
+    if (resultsCount) {
+      resultsCount.textContent = `Hiển thị ${count} khóa học`;
+    }
   }
 
   // Show loading state
   showLoading() {
-    document.getElementById("loading-state").style.display = "block";
-    document.getElementById("courses-grid").style.display = "none";
-    document.getElementById("no-results-state").style.display = "none";
+    const loadingState = document.getElementById("loading-state");
+    const coursesGrid = document.getElementById("courses-grid");
+    const noResultsState = document.getElementById("no-results-state");
+
+    if (loadingState) loadingState.style.display = "block";
+    if (coursesGrid) coursesGrid.style.display = "none";
+    if (noResultsState) noResultsState.style.display = "none";
   }
 
   // Hide loading state
   hideLoading() {
-    document.getElementById("loading-state").style.display = "none";
-    document.getElementById("courses-grid").style.display = "flex";
+    const loadingState = document.getElementById("loading-state");
+    const coursesGrid = document.getElementById("courses-grid");
+
+    if (loadingState) loadingState.style.display = "none";
+    if (coursesGrid) coursesGrid.style.display = "flex";
   }
 
   // Helper methods
@@ -946,7 +913,20 @@ class CourseManager {
 
 // Initialize course manager when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  new CourseManager();
+  const courseManager = new CourseManager();
+
+  // Handle search form submission
+  const searchForm = document.querySelector('#searchModal form');
+  if (searchForm) {
+    searchForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const keyword = searchForm.querySelector('input[name="q"]').value.trim();
+      if (!keyword) return;
+
+      // Update URL with search query and reset category
+      window.location.href = `courses.html?q=${encodeURIComponent(keyword)}`;
+    });
+  }
 });
 
 // Handle category navigation
@@ -957,65 +937,3 @@ function navigateToCategory(category) {
 // Export for use in other scripts
 window.CourseManager = CourseManager;
 window.navigateToCategory = navigateToCategory;
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Lấy từ khóa tìm kiếm từ URL
-  const params = new URLSearchParams(window.location.search);
-  const keyword = params.get("q");
-  if (keyword) {
-    const searchInput = document.querySelector('input[name="q"]');
-    if (searchInput) searchInput.value = keyword;
-
-    // Lọc danh sách khóa học
-    const courseCards = document.querySelectorAll(".course-card");
-    let found = false;
-    courseCards.forEach((card) => {
-      const title =
-        card.querySelector(".course-title")?.textContent.toLowerCase() || "";
-      if (title.includes(keyword.toLowerCase())) {
-        card.style.display = "";
-        found = true;
-      } else {
-        card.style.display = "none";
-      }
-    });
-
-    // Hiển thị thông báo nếu không tìm thấy
-    if (!found) {
-      const grid = document.getElementById("courses-grid");
-      if (grid)
-        grid.innerHTML =
-          '<div class="col-12 text-center py-5"><div class="alert alert-warning">Không tìm thấy khóa học phù hợp.</div></div>';
-    }
-  }
-});
-function filterCoursesByKeyword(keyword) {
-  const searchInput = document.querySelector('input[name="q"]');
-  if (searchInput) searchInput.value = keyword;
-
-  const courseCards = document.querySelectorAll(".course-card");
-  let found = false;
-  courseCards.forEach((card) => {
-    const title =
-      card.querySelector(".course-title")?.textContent.toLowerCase() || "";
-    if (title.includes(keyword.toLowerCase())) {
-      card.style.display = "";
-      found = true;
-    } else {
-      card.style.display = "none";
-    }
-  });
-
-  // Hiển thị thông báo nếu không tìm thấy
-  if (!found) {
-    const grid = document.getElementById("courses-grid");
-    if (grid)
-      grid.innerHTML =
-        '<div class="col-12 text-center py-5"><div class="alert alert-warning">Không tìm thấy khóa học phù hợp.</div></div>';
-  }
-}
-
-// Khởi tạo CourseManager khi DOM ready
-document.addEventListener("DOMContentLoaded", () => {
-  new CourseManager();
-});
