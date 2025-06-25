@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - iDevlish Ngoại Ngữ</title>
+    
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    
+    <link href="assets/css/auth.css" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <!-- Background Animation -->
+    <div class="auth-background">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <div class="auth-container">
+        <div class="container-fluid h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <!-- Left Side - Branding -->
+                <div class="col-lg-6 d-none d-lg-flex auth-branding">
+                    <div class="branding-content" data-aos="fade-right">
+                        <div class="brand-logo">
+                            <img src="/assets/img/logo.png" alt="iDevlish Ngoại Ngữ" class="logo-img">
+                            <h2 class="brand-title">iDevlish Ngoại Ngữ</h2>
+                        </div>
+                        <h3 class="branding-headline">Chào mừng bạn trở lại!</h3>
+                        <p class="branding-description">
+                            Tiếp tục hành trình học tập của bạn. Truy cập vào hàng nghìn khóa học 
+                            chất lượng cao và cộng đồng học viên năng động.
+                        </p>
+                        <div class="branding-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">50K+</div>
+                                <div class="stat-label">Học viên</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1000+</div>
+                                <div class="stat-label">Khóa học</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Hài lòng</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Login Form -->
+                <div class="col-lg-6 col-md-8 col-sm-10">
+                    <div class="auth-form-container" data-aos="fade-left">
+                        <div class="auth-form-header">
+                            <h1 class="auth-title">Đăng nhập</h1>
+                            <p class="auth-subtitle">Chào mừng bạn trở lại! Vui lòng đăng nhập vào tài khoản của bạn</p>
+                        </div>
+
+                        <!-- Social Login Buttons -->
+                        <div class="social-login-section">
+                            <button type="button" class="btn social-btn google-btn" onclick="loginWithGoogle()">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                </svg>
+                                Đăng nhập với Google
+                            </button>
+
+                            <button type="button" class="btn social-btn facebook-btn" onclick="loginWithFacebook()">
+                                <i class="bi bi-facebook social-icon"></i>
+                                Đăng nhập với Facebook
+                            </button>
+
+                            <button type="button" class="btn social-btn apple-btn" onclick="loginWithApple()">
+                                <i class="bi bi-apple social-icon"></i>
+                                Đăng nhập với Apple
+                            </button>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="auth-divider">
+                            <span class="divider-text">Hoặc đăng nhập bằng email</span>
+                        </div>
+
+                        <!-- Login Form -->
+                        <form class="auth-form" id="loginForm" novalidate>
+                            <div class="form-group">
+                                <label for="loginEmail" class="form-label">
+                                    Email <span class="required">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-envelope"></i>
+                                    </span>
+                                    <input type="email" class="form-control" id="loginEmail" name="email" required>
+                                    <div class="invalid-feedback">
+                                        Vui lòng nhập email hợp lệ
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loginPassword" class="form-label">
+                                    Mật khẩu <span class="required">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock"></i>
+                                    </span>
+                                    <input type="password" class="form-control" id="loginPassword" name="password" required>
+                                    <button type="button" class="btn btn-outline-secondary toggle-password" data-target="loginPassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <div class="invalid-feedback">
+                                        Vui lòng nhập mật khẩu
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">
+                                        Ghi nhớ đăng nhập
+                                    </label>
+                                </div>
+                                <a href="#" class="auth-link" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">
+                                    Quên mật khẩu?
+                                </a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary auth-submit-btn">
+                                <span class="btn-text">Đăng nhập</span>
+                                <span class="btn-loading d-none">
+                                    <span class="spinner-border spinner-border-sm me-2"></span>
+                                    Đang xử lý...
+                                </span>
+                            </button>
+                        </form>
+
+                        <!-- Register Link -->
+                        <div class="auth-footer">
+                            <p class="auth-switch">
+                                Chưa có tài khoản? 
+                                <a href="register.html" class="auth-link">Đăng ký ngay</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Quên mật khẩu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted mb-4">
+                        Nhập email của bạn và chúng tôi sẽ gửi liên kết đặt lại mật khẩu.
+                    </p>
+                    <form id="forgotPasswordForm">
+                        <div class="form-group">
+                            <label for="resetEmail" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control" id="resetEmail" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Gửi liên kết đặt lại
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>
